@@ -34,6 +34,12 @@ class Offer
      * @ORM\Column(type="text")
      */
     private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="offers")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
     
     /**
      * @ORM\PrePersist
@@ -84,6 +90,18 @@ class Offer
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

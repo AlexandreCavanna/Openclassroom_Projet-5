@@ -40,6 +40,8 @@ class OfferController extends AbstractController
 
          if($form->isSubmitted() && $form->isValid()) {
              
+            $offer->setAuthor($this->getUser());
+            
             $manager->persist($offer);
             $manager->flush();
 
