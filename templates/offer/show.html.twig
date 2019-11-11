@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{offer.title}}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>{{offer.title}}</h1>
+    <p>{{offer.description}}</p>
+    <a href="#" class="btn btn-primary">Postuler à cette offre</a>
+</div>
+
+{% endblock %}
