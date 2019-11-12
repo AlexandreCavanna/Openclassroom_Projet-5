@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidature n°{{candidature.id}}{% endblock %}
+
+{% block body %}
+
+
+{% if app.request.query.get('withAlert') %}
+            <div class="alert alert-success">
+                <h4 class="alert-heading">Bravo !</h4>
+                <p>
+                    Votre candidature auprès de
+                    <strong>
+                        <a href="{{ path("user_show", {'slug': candidature.offer.author.slug})}}">{{candidature.offer.author.fullName}}</a>
+                    </strong>
+                    pour l'offre
+                    <strong>
+                        <a href="{{ path("offers_show", {'slug': candidature.offer.slug})}}">{{candidature.offer.title}}</a>
+                    </strong>
+                    a bien été prise en compte !
+                </p>
+            </div>
+        {% endif %}
+
+<div class="container">
+    <h1>Candidature pour l'offre : {{candidature.offer.title}}  </h1>
+    <h2>Le candidat s'appelle {{candidature.student.fullName}}</h2>
+    <p>Vous êtes sur le point de postuler pour l'offre de <strong>{{candidature.offer.author.fullName}}</strong>
+    , l'entreprise vous répondera d'ici peu !</p>
+    <object type="application/pdf" width="100%" height="100%">
+   <param name="src" value="{{ asset('pdf/test.pdf') }}" />
+
+     
+      
+      <a class="btn btn-primary" href="{{asset('uploads/cv/') ~ candidature.cvFileName }}">Télécharger CV du candidat</a>
+     
+   
+      
+ 
+</object>
+</div>
+{% endblock %}

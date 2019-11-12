@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Candidature;
 use Faker\Factory;
 use App\Entity\Role;
 use App\Entity\User;
@@ -83,6 +84,22 @@ class AppFixtures extends Fixture
             ->setDescription($description)
             ->setAuthor($user);
             
+            // Handle / manage Job candidature
+            for($j = 1; $j <= mt_rand(0, 10); $j++) {
+                $candidature = new Candidature();
+        
+                $student = $users[mt_rand(0, count($users) -1)];
+                $candidature->setStudent($student)
+                        ->setOffer($offer)
+                        ->setcoverLetter($faker->paragraph(6))
+                        ->setcvFileName($faker->file('public/cv_fixture', 'public/cv', false))
+                        ;
+        
+                $manager->persist($candidature);
+                
+               
+            }
+
             $manager->persist($offer);
         }   
            $manager->flush();

@@ -14,7 +14,7 @@
         <div class="col-9">
             <h1>{{offer.title}}</h1>
             <p>{{offer.description}}</p>
-            <a href="#" class="btn btn-primary">Postuler à cette offre</a>
+            <a href="{{ path('candidatures_new', {'slug': offer.slug}) }}" class="btn btn-primary">Postuler à cette offre</a>
             {% if app.user and app.user == offer.author %}
             <a href="{{ path('offers_edit', {'slug': offer.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
 

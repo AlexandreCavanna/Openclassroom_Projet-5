@@ -26,7 +26,7 @@
         {{user.description | raw}}
 
         <hr>
-
+        {{candidature.student.fullName}}
         <h2>Les offres de {{user.fullName}}</h2>
 
         {% if user.offers | length > 0 %}

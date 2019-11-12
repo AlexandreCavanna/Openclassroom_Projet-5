@@ -1,17 +1,16 @@
-div.container {
-    margin-top:20px;
-}
-
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
 }
 
+div.container {
+    margin-top:20px;
+}
+
 .custom-file-input ~ .custom-file-label::after {
     content: "Upload CV";
 }
-
 
 .avatar {
     max-width: 128px;

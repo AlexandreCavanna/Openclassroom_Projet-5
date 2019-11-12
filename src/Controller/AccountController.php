@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidature;
 use App\Entity\User;
 use App\Form\AccountType;
 use App\Entity\PasswordUpdate;
@@ -167,9 +168,10 @@ class AccountController extends AbstractController
      * 
      * @return Response
      */
-    public function myAccount() {
+    public function myAccount(Candidature $candidature) {
         return $this->render('user/index.html.twig', [
-            'user' => $this->getUser()     
+            'user' => $this->getUser(),  
+            'candidature' => $candidature   
         ]);
     }
 }
