@@ -14,7 +14,10 @@
             <p class="card-text">
                 {{ offer.description }}
             </p>
-            <a href="{{url}}" class="btn btn-primary float-right">En savoir plus !</a>
+            <a href="{{url}}" class="btn btn-primary">En savoir plus !</a>
+            {% if app.user and app.user == offer.author %}
+                <a href="{{ path('offers_edit', {'slug': offer.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
+            {% endif %}
         </div>
     </div>
 </div>  

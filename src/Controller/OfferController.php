@@ -10,6 +10,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 class OfferController extends AbstractController
 {
@@ -29,6 +32,7 @@ class OfferController extends AbstractController
      * Permet de créer une offre
      *
      * @Route("/offers/new", name="offers_new")
+     * @IsGranted("ROLE_USER")
      * @return Response
      */
     public function new(Request $request, ObjectManager $manager) {
@@ -64,6 +68,8 @@ class OfferController extends AbstractController
      * Permet d'afficher le formulaire d'édition d'une offre
      * 
      * @Route("/offers/{slug}/edit", name="offers_edit")
+     * @Security("is_granted('ROLE_USER') and user == offer.getAuthor()",
+     *  message="Cette offre ne vous appartient pas, vous ne pouvez pas la modifier")
      * 
      * @return Responce
      */
@@ -101,6 +107,28 @@ class OfferController extends AbstractController
         return $this->render('offer/show.html.twig', [
             'offer' => $offer,
         ]);
+    }
+
+    /**
+     * Permet de supprimer une offre
+     *
+     * @Route("offers/{slug}/delete", name="offers_delete")
+     * @Security("is_granted('ROLE_USER') and user == offer.getAuthor()", message="Vous n'avez pas le droit d'accèder à cette ressource")
+     * 
+     * @param Offer $offer
+     * @param ObjectManager $manager
+     * @return Response
+     */
+    public function delete(Offer $offer, ObjectManager $manager) {
+        $manager->remove($offer);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            "L'offre <strong>{$offer->getTitle()}</strong> a bien été supprimée !"
+        );
+
+        return $this->redirectToRoute("offers_index");
     }
 
 }

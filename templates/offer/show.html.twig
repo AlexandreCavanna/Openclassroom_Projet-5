@@ -14,12 +14,12 @@
         <div class="col-9">
             <h1>{{offer.title}}</h1>
             <p>{{offer.description}}</p>
-            {# <a href="{{ path('booking_create', {'slug': offer.slug}) }}" class="btn btn-primary">Réserver !</a> #}
             <a href="#" class="btn btn-primary">Postuler à cette offre</a>
             {% if app.user and app.user == offer.author %}
-            <a href="{{ path('offers_edit', {'slug': offer.slug}) }}" class="btn btn-primary">Modifier l'annonce</a>
+            <a href="{{ path('offers_edit', {'slug': offer.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
 
-            {# <a href="{{ path('offers_delete', {'slug': offer.slug})}}" class="btn btn-danger" onclick="return confirm(`Êtes vous sur de vouloir supprimer l'annonce : {{offer.title}} ?`)">Supprimer l'annonce</a> #}
+            <a href="{{ path('offers_delete', {'slug': offer.slug}) }}" class="btn btn-danger" 
+            onclick="return confirm(`Êtes vous sur de vouloir supprimer l'offre : {{offer.title}} ?`)">Supprimer l'annonce</a>
             {% endif %}
         </div>
 
