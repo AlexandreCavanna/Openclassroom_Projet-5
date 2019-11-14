@@ -15,9 +15,8 @@
 		<p>Vous êtes sur le point de postuler pour l'offre de
 			<strong>{{candidature.offer.author.fullName}}</strong>
 			, l'entreprise vous répondera d'ici peu !</p>
-		<object type="application/pdf" width="100%" height="100%">
-			<param name="src" value="{{ asset('pdf/test.pdf') }}"/>
+		
 			<a class="btn btn-primary" href="{{asset('uploads/cv/') ~ candidature.cvFileName }}">Télécharger CV du candidat</a>
-		</object>
+		
 	</div>
 {% endblock %}

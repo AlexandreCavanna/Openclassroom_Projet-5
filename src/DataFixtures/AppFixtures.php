@@ -92,12 +92,12 @@ class AppFixtures extends Fixture
                 $candidature->setStudent($student)
                         ->setOffer($offer)
                         ->setcoverLetter($faker->paragraph(6))
-                        ->setcvFileName($faker->file('public/cv_fixture', 'public/cv', false))
+                        ->setcvFileName($faker->file('public/cv_fixture', 'public/uploads/cv', false))
                         ;
         
                 $manager->persist($candidature);
                 
-               
+            
             }
 
             $manager->persist($offer);
