@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidatures {% endblock %}
+
+{% block body %}
+
+
+<div class="row">
+        {% for candidature in candidatures %}
+            <a href="{{ path('candidatures_show', {'id': candidature.id}) }}" class="btn btn-primary">Candidature</a>
+        {% endfor %}</button>
+    </div>
+{% endblock %}

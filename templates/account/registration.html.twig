@@ -1,16 +1,89 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Inscription
+{% endblock %}
 
 {% block body %}
 
-<div class="container">
-    <h1>Incrivez vous sur notre site !</h1>
+	<div class="container">
+		<h1>Incrivez vous sur notre site !</h1>
 
-    {{ form_start(form) }}
-    {{ form_widget(form)}}
-    <button type="submit" class="btn btn-success">Confirmez l'inscription</button>
-    {{ form_end(form) }}
-</div>
+		{{ form_start(form) }}
+		{{ form_label(form.firstname)}}
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">
+					<i class="fa fa-user"></i>
+				</span>
+			</div>
+			{{ form_widget(form.firstname)}}
+		</div>
+		{{ form_label(form.lastname)}}
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">
+					<i class="fa fa-user"></i>
+				</span>
+			</div>
+			{{ form_widget(form.lastname)}}
+		</div>
+		{{ form_label(form.email)}}
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">
+					<i class="fa fa-envelope"></i>
+				</span>
+			</div>
+			{{ form_widget(form.email)}}
+		</div>
+		{{ form_label(form.hash)}}
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">
+					<i class="fa fa-lock"></i>
+				</span>
+			</div>
+			{{ form_widget(form.hash)}}
+		</div>
+		{{ form_label(form.passwordConfirm)}}
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">
+					<i class="fa fa-lock"></i>
+				</span>
+			</div>
+			{{ form_widget(form.passwordConfirm)}}
+		</div>
+		{{ form_label(form.picture)}}
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">
+					<i class="fa fa-picture-o"></i>
+				</span>
+			</div>
+			{{ form_widget(form.picture)}}
+		</div>
+		{{ form_label(form.introduction)}}
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">
+					<i class="fa fa-align-left"></i>
+				</span>
+			</div>
+			{{ form_widget(form.introduction)}}
+		</div>
+		{{ form_label(form.description)}}
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">
+					<i class="fa fa-align-left"></i>
+				</span>
+			</div>
+			{{ form_widget(form.description)}}
+		</div>
+
+		<button type="submit" class="btn btn-success">Confirmez l'inscription</button>
+		{{ form_end(form) }}
+	</div>
 
 {% endblock %}

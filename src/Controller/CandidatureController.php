@@ -9,6 +9,7 @@ use App\Repository\CandidatureRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -18,14 +19,14 @@ class CandidatureController extends AbstractController
 
 
     /**
-     * @Route("/candidatures", name="candidature_index")
+     * @Route("/candidatures", name="candidatures_index")
      */
     public function index(CandidatureRepository $repo)
     {
-        $offers = $repo->findAll();
+        $candidatures = $repo->findAll();
 
-        return $this->render('offer/index.html.twig', [
-            'offers' => $offers,
+        return $this->render('candidature/index.html.twig', [
+            'candidatures' => $candidatures,
         ]);
     }
 
@@ -74,7 +75,7 @@ class CandidatureController extends AbstractController
             $manager->persist($candidature);
             $manager->flush();
 
-            return $this->redirectToRoute('candidatures_show', ['id' => $candidature->getId(), 'withAlert' => true]);
+            return $this->redirectToRoute('candidatures_new', ['id' => $candidature->getId(), 'withAlert' => true]);
             }
         
 
@@ -87,13 +88,15 @@ class CandidatureController extends AbstractController
     /**
      * @Route("/candidatures/{id}", name="candidatures_show")
      * @IsGranted("ROLE_USER")
+     * 
      */
      public function show(Candidature $candidature)
      {
-
+        
         return $this->render('candidature/show.html.twig', [
             'candidature' => $candidature,
         ]);
+        
      }
 
 

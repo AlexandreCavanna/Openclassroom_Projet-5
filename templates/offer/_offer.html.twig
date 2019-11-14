@@ -1,23 +1,25 @@
 {% set url = path('offers_show', {'slug': offer.slug}) %}
-  
-  <div class="col-md-4">
-    <div class="card bg-light mb-3"> 
-        <div class="card-header text-center">
-        Company
-        </div>
-        <div class="card-body">
-            <h4 class="card-title">
-                <a href="{{url}}">
-                    {{ offer.title }}
-                </a>
-            </h4>
-            <p class="card-text">
-                {{ offer.description }}
-            </p>
-            <a href="{{url}}" class="btn btn-primary">En savoir plus !</a>
-            {% if app.user and app.user == offer.author %}
-                <a href="{{ path('offers_edit', {'slug': offer.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
-            {% endif %}
-        </div>
-    </div>
-</div>  
+
+<div class="col-md-4">
+	<div class="card bg-light mb-3">
+		<div class="card-header text-center">
+			Company
+		</div>
+		<div class="card-body">
+			<h4 class="card-title">
+				<a href="{{url}}">
+					{{ offer.title }}
+				</a>
+			</h4>
+			<p class="card-text">
+				{{ offer.description }}
+			</p>
+			{% if app.user and app.user == offer.author %}
+				<a href="{{url}}" class="btn btn-primary">Gérer offre</a>
+				<a href="{{ path('offers_edit', {'slug': offer.slug}) }}" class="btn btn-secondary">Modifier l'offre</a>
+			{% else %}
+				<a href="{{url}}" class="btn btn-primary">En savoir plus !</a>
+			{% endif %}
+		</div>
+	</div>
+</div>

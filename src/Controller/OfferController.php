@@ -5,13 +5,14 @@ namespace App\Controller;
 use App\Entity\Offer;
 use App\Form\OfferType;
 use App\Repository\OfferRepository;
+use App\Repository\CandidatureRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class OfferController extends AbstractController
@@ -102,10 +103,11 @@ class OfferController extends AbstractController
     /**
      * @Route("/offers/{slug}", name="offers_show")
      */
-    public function show(Offer $offer) {
-        
+    public function show(Offer $offer, CandidatureRepository $repo) {
+        $candidatures = $repo->findAll();
         return $this->render('offer/show.html.twig', [
             'offer' => $offer,
+            'candidatures' => $candidatures
         ]);
     }
 

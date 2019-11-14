@@ -1,37 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion au site{% endblock %}
+{% block title %}Connexion au site
+{% endblock %}
 
 {% block body %}
-<div class="container">
+	<div class="container">
 
-    <div class="row">
-        <div class="col-md-3">&nbsp;</div>
-        <div class="col-md-6">
-            <div class="bg-light py-3 px-3">
-            <h1>Connectez-vous !</h1>
+		<div class="row">
+			<div class="col-md-3">&nbsp;</div>
+			<div class="col-md-6">
+				<div class="bg-light py-3 px-3">
+					<h1>Connectez-vous !</h1>
 
-            {% if hasError %}
-                <div class="alert alert-danger">Une erreur est survenue, le nom d'utilisateur ou 
-                le mot de passe est invalide.</div>
-            {% endif %}
-            
-            <form action="{{ path('account_login')}}" method="post">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" name="_username" id="email" class="form-control" placeholder="Adresse email..." required value="{{username}}">
-                </div>
-                <div class="form-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" name="_password" id="email" class="form-control" placeholder="Mot de passe..." required>
-                </div>
-                    <div class="form-group">
-                    <button type="submit" class="btn btn-success">Connexion !</button>
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock %}
-            
+					{% if hasError %}
+						<div class="alert alert-danger">Une erreur est survenue, le nom d'utilisateur ou 
+							                le mot de passe est invalide.</div>
+					{% endif %}
+
+					<form action="{{ path('account_login')}}" method="post">
+						<div class="form-group">
+							<label for="email">Email</label>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+								</div>                         
+								<input type="text" name="_username" id="email" class="form-control" aria-describedby="basic-addon1" placeholder="Adresse email..." required value="{{username}}">
+							</div>
+                            </div>
+							<div class="form-group mb-4">
+								<label for="password">Mot de passe</label>
+                                <div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+								</div>  
+								<input type="password" name="_password" id="email" class="form-control" placeholder="Mot de passe..." required>
+                                </div>
+							</div>
+							<div class="form-group text-center">
+								<button type="submit" class="btn btn-success">Connexion !</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}

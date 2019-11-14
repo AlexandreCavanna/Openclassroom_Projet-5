@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Candidature;
 use App\Entity\User;
+use App\Entity\Offer;
 use App\Form\AccountType;
 use App\Entity\PasswordUpdate;
 use App\Form\RegistrationType;
@@ -13,8 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Mime\Encoder\EncoderInterface;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -168,10 +166,13 @@ class AccountController extends AbstractController
      * 
      * @return Response
      */
-    public function myAccount(Candidature $candidature) {
+    public function myAccount() {
+        $offer = new Offer();
+       $candidatures = $offer->getCandidatures();
+        
         return $this->render('user/index.html.twig', [
-            'user' => $this->getUser(),  
-            'candidature' => $candidature   
+            'user' => $this->getUser(),
+            'candidatures' => $candidatures  
         ]);
     }
 }
