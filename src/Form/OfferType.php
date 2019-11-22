@@ -14,18 +14,21 @@ class OfferType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 
-            TextType::class, 
-            $this->getConfiguration("Titre", "Tapez un titre pour votre offre", null)
+            ->add(
+                'title',
+                TextType::class,
+                $this->getConfiguration("Titre", "Tapez un titre pour votre offre", null)
             )
-            ->add('slug',
-            TextType::class, 
-            $this->getConfiguration("Adresse web", "Tapez l'adresse web (automatique)", null, [ 'required' => false])
+            ->add(
+                'slug',
+                TextType::class,
+                $this->getConfiguration("Adresse web", "Tapez l'adresse web (automatique)", null, ['required' => false])
             )
-            ->add('description',TextType::class, 
-            $this->getConfiguration("Description", "Tapez une description pour votre offre", null)
-            )
-        ;
+            ->add(
+                'description',
+                TextType::class,
+                $this->getConfiguration("Description", "Tapez une description pour votre offre", null)
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)

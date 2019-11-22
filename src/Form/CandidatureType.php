@@ -15,25 +15,24 @@ class CandidatureType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('cvFileName',FileType::class, $this->getConfiguration('Upload un Cv (PDF)','.   .   .', null, [
+            ->add('cvFileName', FileType::class, $this->getConfiguration('Upload un Cv (PDF)', '.   .   .', null, [
 
-            'mapped' => false,
+                'mapped' => false,
 
-            'required' => false,
+                'required' => false,
 
-        'constraints' => [
-            new File([
-                'maxSize' => '1024k',
-                'mimeTypes' => [
-                    'application/pdf',
-                    'application/x-pdf',
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                    ])
                 ],
-                'mimeTypesMessage' => 'Please upload a valid PDF document',
-            ])
-        ],
-    ]))
-        ->add('coverLetter',TextareaType::class,$this->getConfiguration('Lettre de motivation','Tapez votre lettre de motivation', null))
-        ;
+            ]))
+            ->add('coverLetter', TextareaType::class, $this->getConfiguration('Lettre de motivation', 'Tapez votre lettre de motivation', null));
     }
 
     public function configureOptions(OptionsResolver $resolver)

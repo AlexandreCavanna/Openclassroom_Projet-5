@@ -64,7 +64,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=10, minMessage="Votre introduction doit faire au moins 10 caractères")
+     * @Assert\Length(min=10, minMessage="Votre introduction doit faire au moins 10 caractères", max=255, maxMessage="Votre introduction doit faire moins de 255 caractères")
      */
     private $introduction;
 

@@ -28,25 +28,26 @@ class OfferController extends AbstractController
             'offers' => $offers,
         ]);
     }
-    
+
     /**
      * Permet de créer une offre
      *
      * @Route("/offers/new", name="offers_new")
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_EMPLOYER")
      * @return Response
      */
-    public function new(Request $request, ObjectManager $manager) {
+    public function new(Request $request, ObjectManager $manager)
+    {
         $offer = new Offer();
-        
-         $form = $this->createForm(OfferType::class, $offer);
 
-         $form->handleRequest($request);
+        $form = $this->createForm(OfferType::class, $offer);
 
-         if($form->isSubmitted() && $form->isValid()) {
-             
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
             $offer->setAuthor($this->getUser());
-            
+
             $manager->persist($offer);
             $manager->flush();
 
@@ -58,13 +59,13 @@ class OfferController extends AbstractController
             return $this->redirectToRoute('offers_show', [
                 'slug' => $offer->getSlug()
             ]);
-         }
+        }
 
         return $this->render('offer/new.html.twig', [
             'form' => $form->createView()
         ]);
     }
-    
+
     /**
      * Permet d'afficher le formulaire d'édition d'une offre
      * 
@@ -74,13 +75,14 @@ class OfferController extends AbstractController
      * 
      * @return Responce
      */
-    public function edit(Offer $offer, Request $request, ObjectManager $manager) {
+    public function edit(Offer $offer, Request $request, ObjectManager $manager)
+    {
         $form = $this->createForm(OfferType::class, $offer);
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-             
+        if ($form->isSubmitted() && $form->isValid()) {
+
             $manager->persist($offer);
             $manager->flush();
 
@@ -92,7 +94,7 @@ class OfferController extends AbstractController
             return $this->redirectToRoute('offers_show', [
                 'slug' => $offer->getSlug()
             ]);
-         }
+        }
 
         return $this->render('offer/edit.html.twig', [
             'form' => $form->createView(),
@@ -103,7 +105,8 @@ class OfferController extends AbstractController
     /**
      * @Route("/offers/{slug}", name="offers_show")
      */
-    public function show(Offer $offer, CandidatureRepository $repo) {
+    public function show(Offer $offer, CandidatureRepository $repo)
+    {
         $candidatures = $repo->findAll();
         return $this->render('offer/show.html.twig', [
             'offer' => $offer,
@@ -121,7 +124,8 @@ class OfferController extends AbstractController
      * @param ObjectManager $manager
      * @return Response
      */
-    public function delete(Offer $offer, ObjectManager $manager) {
+    public function delete(Offer $offer, ObjectManager $manager)
+    {
         $manager->remove($offer);
         $manager->flush();
 
@@ -132,5 +136,4 @@ class OfferController extends AbstractController
 
         return $this->redirectToRoute("offers_index");
     }
-
 }

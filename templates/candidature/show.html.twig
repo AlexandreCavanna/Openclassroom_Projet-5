@@ -12,11 +12,7 @@
 		</h1>
 		<h2>Le candidat s'appelle
 			{{candidature.student.fullName}}</h2>
-		<p>Vous êtes sur le point de postuler pour l'offre de
-			<strong>{{candidature.offer.author.fullName}}</strong>
-			, l'entreprise vous répondera d'ici peu !</p>
-		
-			<a class="btn btn-primary" href="{{asset('uploads/cv/') ~ candidature.cvFileName }}">Télécharger CV du candidat</a>
-		
+
+		<a class="btn btn-primary" href="{{asset('uploads/cv/') ~ candidature.cvFileName }}">Télécharger CV du candidat</a>
 	</div>
 {% endblock %}

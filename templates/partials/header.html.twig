@@ -22,8 +22,10 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownLink">
+                            {% if is_granted('ROLE_EMPLOYER') %}
                             <a href="{{ path('offers_new')}}" class="dropdown-item">Créer une offre</a>
                             <div class="dropdown-divider"></div>
+                            {% endif %}
                             <a href="{{ path('account_index')}}" class="dropdown-item">Mon compte</a>
                             <a href="{{ path('account_profile')}}" class="dropdown-item">Modifier mon profil</a>
                             <div class="dropdown-divider"></div>

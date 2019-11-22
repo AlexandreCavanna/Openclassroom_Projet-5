@@ -81,8 +81,16 @@
 			</div>
 			{{ form_widget(form.description)}}
 		</div>
-
-		<button type="submit" class="btn btn-success">Confirmez l'inscription</button>
+		<div class="row">
+			<div class="col">
+			{{ form_row(form.registerStudent)}}
+			</div>
+			
+			<div class="col">
+			{{ form_row(form.registerEmployer)}}
+			</div>
+		</div>
+		
 		{{ form_end(form) }}
 	</div>
 

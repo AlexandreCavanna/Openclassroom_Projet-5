@@ -9,7 +9,6 @@ use App\Repository\CandidatureRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -32,7 +31,7 @@ class CandidatureController extends AbstractController
 
     /**
      * @Route("/offers/{slug}/apply-job", name="candidatures_new")
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_STUDENT")
      */
     public function applyJob(Offer $offer, Request $request, ObjectManager $manager)
     {
@@ -42,62 +41,59 @@ class CandidatureController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $brochureFile */
+        if ($form->isSubmitted() && $form->isValid()) {
+            
             $cvFile = $form['cvFileName']->getData();
 
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
             if ($cvFile) {
                 $originalFilename = pathinfo($cvFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
+ 
                 $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$cvFile->guessExtension();
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $cvFile->guessExtension();
 
-                // Move the file to the directory where brochures are stored
                 try {
                     $cvFile->move(
                         $this->getParameter('cv_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
+        
                 }
 
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
                 $candidature->setCvFilename($newFilename);
             }
             $user = $this->getUser();
             $candidature->setStudent($user)
-                    ->setoffer($offer);
+                ->setoffer($offer);
 
             $manager->persist($candidature);
             $manager->flush();
 
-            return $this->redirectToRoute('candidatures_new', ['id' => $candidature->getId(), 'withAlert' => true]);
-            }
-        
+            $this->addFlash(
+                'success',
+                "Votre candidature a bien été envoyée avec succès !"
+            );
+
+            return $this->redirectToRoute('home');
+        }
+
 
         return $this->render('candidature/new.html.twig', [
             'offer' => $offer,
             'form'  => $form->createView()
         ]);
-     }
+    }
 
     /**
      * @Route("/candidatures/{id}", name="candidatures_show")
-     * @IsGranted("ROLE_USER")
+     * @IsGranted("ROLE_EMPLOYER")
      * 
      */
-     public function show(Candidature $candidature)
-     {
-        
+    public function show(Candidature $candidature)
+    {
+
         return $this->render('candidature/show.html.twig', [
             'candidature' => $candidature,
         ]);
-        
-     }
-
-
+    }
 }

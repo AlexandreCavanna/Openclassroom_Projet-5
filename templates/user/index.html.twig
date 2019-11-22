@@ -10,6 +10,7 @@
 		<div class="row mb-3 align-items-center">
 			<div class="col-3 text-center">
 				<img src="{{user.picture}}" class="avatar mb-3" alt="{{user.fullName}}">
+				{% if is_granted('ROLE_EMPLOYER') %}
 				<br>
 				<span class="badge badge-primary rounded">{{user.offers | length}}
 					{% if user.offers | length == 0 %}
@@ -18,6 +19,7 @@
 						offres
 					{% endif %}
 				</span>
+				{% endif %}
 			</div>
 			<div class="col-9">
 				<h1>{{user.fullName}}</h1>
@@ -29,33 +31,26 @@
 				{% endif %}
 			</div>
 		</div>
+		<div class="col">
+			<p>{{user.introduction | raw}}</p>
+			<p>{{user.description | raw}}</p>
+		</div>
+		{% if is_granted('ROLE_EMPLOYER') %}
+		<hr>
+		<h2>Les offres de {{user.fullName}}</h2>
 
-		{{user.description | raw}}
-
-		<hr>{# <a href="{{ path('candidatures_show', {'id': candidatures.id}) }}" class="btn btn-primary">Test</a> #}
-
-
-		{# {% for candidature in candidatures %}
-				                    <a href="{{ path('candidatures_show', {'id': candidature.id}) }}" class="btn btn-primary">Candidature</a>
-				                {% endfor %} #}
-			<h2>Les offres de
-		{{user.fullName}}
-		</h2>
-
-			{% if user.offers | length > 0 %}
-				<div class="row"> {% for offer in user.offers %}
+		{% if user.offers | length > 0 %}
+			<div class="row">
+				{% for offer in user.offers %}
 					{% include 'offer/_offer.html.twig' %}
 				{% endfor %}
 			</div>
 		{% else %}
 			<div class="alert alert-warning">
-				<p>
-					<strong>{{user.fullName}}</strong>
-					n'a pas encore d'offre sur le site !
-				</p>
+				<p><strong>{{user.fullName}}</strong>n'a pas encore d'offre sur le site !</p>
 			</div>
 		{% endif %}
-
+		{% endif %}
 	</div>
-
+	
 {% endblock %}
