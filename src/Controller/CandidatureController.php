@@ -15,20 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CandidatureController extends AbstractController
 {
 
-
-
-    /**
-     * @Route("/candidatures", name="candidatures_index")
-     */
-    public function index(CandidatureRepository $repo)
-    {
-        $candidatures = $repo->findAll();
-
-        return $this->render('candidature/index.html.twig', [
-            'candidatures' => $candidatures,
-        ]);
-    }
-
     /**
      * @Route("/offers/{slug}/apply-job", name="candidatures_new")
      * @IsGranted("ROLE_STUDENT")

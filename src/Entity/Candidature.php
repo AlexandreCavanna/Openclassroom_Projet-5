@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,7 +24,7 @@ class Candidature
     private $student;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Offer", inversedBy="candidatures")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Offer", inversedBy="candidatures", cascade={"remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $offer;
@@ -35,6 +36,7 @@ class Candidature
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Vous devez Upload un CV")
      */
     private $cvFileName;
 

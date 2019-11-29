@@ -6,91 +6,98 @@
 {% block body %}
 
 	<div class="container">
-		<h1>Incrivez vous sur notre site !</h1>
 
 		{{ form_start(form) }}
-		{{ form_label(form.firstname)}}
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1">
-					<i class="fa fa-user"></i>
-				</span>
+		<div class="bg-light border border-dark p-3 my-5">
+			<h1>Incrivez vous sur notre site !</h1>
+			{{ form_label(form.firstname)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-user"></i>
+					</span>
+				</div>
+				{{ form_widget(form.firstname)}}
 			</div>
-			{{ form_widget(form.firstname)}}
+			{{ form_label(form.lastname)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-user"></i>
+					</span>
+				</div>
+				{{ form_widget(form.lastname)}}
+			</div>
+			{{ form_label(form.email)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-envelope"></i>
+					</span>
+				</div>
+				{{ form_widget(form.email)}}
+			</div>
+			{{ form_label(form.emailConfirm)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-envelope"></i>
+					</span>
+				</div>
+				{{ form_widget(form.emailConfirm)}}
+			</div>
+			{{ form_label(form.hash)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-lock"></i>
+					</span>
+				</div>
+				{{ form_widget(form.hash)}}
+			</div>
+			{{ form_label(form.passwordConfirm)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-lock"></i>
+					</span>
+				</div>
+				{{ form_widget(form.passwordConfirm)}}
+			</div>
+			{{ form_label(form.picture)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-picture-o"></i>
+					</span>
+				</div>
+				{{ form_widget(form.picture)}}
+			</div>
+			<div class="row mb-4">
+				<div class="col-12 col-md-6">
+					{{ form_label(form.introduction)}}
+
+					{{ form_widget(form.introduction)}}
+
+				</div>
+				<div class="col-12 col-md-6">
+					{{ form_label(form.description)}}
+
+					{{ form_widget(form.description)}}
+
+				</div>
+			</div>
+			<div class="row text-center mb-4">
+				<div class="col mb-4">
+					{{ form_label(form.registerStudent)}}
+					{{ form_widget(form.registerStudent)}}
+				</div>
+				<div class="col">
+					{{ form_label(form.registerEmployer)}}
+					{{ form_widget(form.registerEmployer)}}
+				</div>
+			</div>
 		</div>
-		{{ form_label(form.lastname)}}
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1">
-					<i class="fa fa-user"></i>
-				</span>
-			</div>
-			{{ form_widget(form.lastname)}}
-		</div>
-		{{ form_label(form.email)}}
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1">
-					<i class="fa fa-envelope"></i>
-				</span>
-			</div>
-			{{ form_widget(form.email)}}
-		</div>
-		{{ form_label(form.hash)}}
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1">
-					<i class="fa fa-lock"></i>
-				</span>
-			</div>
-			{{ form_widget(form.hash)}}
-		</div>
-		{{ form_label(form.passwordConfirm)}}
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1">
-					<i class="fa fa-lock"></i>
-				</span>
-			</div>
-			{{ form_widget(form.passwordConfirm)}}
-		</div>
-		{{ form_label(form.picture)}}
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1">
-					<i class="fa fa-picture-o"></i>
-				</span>
-			</div>
-			{{ form_widget(form.picture)}}
-		</div>
-		{{ form_label(form.introduction)}}
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1">
-					<i class="fa fa-align-left"></i>
-				</span>
-			</div>
-			{{ form_widget(form.introduction)}}
-		</div>
-		{{ form_label(form.description)}}
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1">
-					<i class="fa fa-align-left"></i>
-				</span>
-			</div>
-			{{ form_widget(form.description)}}
-		</div>
-		<div class="row">
-			<div class="col">
-			{{ form_row(form.registerStudent)}}
-			</div>
-			
-			<div class="col">
-			{{ form_row(form.registerEmployer)}}
-			</div>
-		</div>
-		
 		{{ form_end(form) }}
 	</div>
 

@@ -1,13 +1,84 @@
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  html, body {
+      height: 100%;
+  }
+  
+  body {
+      font-size: 16px;
+  }
+  
+  h1 {
+      font-size: 28px;
+  }
+
+  .dropdown-menu--animate.collapsing {
+    display: block;
 }
 
-div.container {
-    margin-top:20px;
+  .dropdown-menu--animate {
+    opacity: 0.8;
+    height: 0;
+    display: block;
+    transition: all 0.3s;
+    overflow: hidden;
+    transform-origin: top;
+    transform: scale(1,0);
 }
 
+.dropdown-menu--animate.show {
+    opacity: 1;
+    height: auto;
+    transition: all 0.3s;
+    transform: scale(1);
+}
+
+#navbarColor01 .nav-link {
+    padding: 8px 12px !important;
+}
+
+  #btn-profil {
+      text-align: center !important;
+  }
+  .container {
+    min-height: calc(100vh - 131px);
+  }
+
+  label {
+      font-size: 17px;
+  }
+
+  input {
+      height: 43px !important;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  .jumbotron h1 {
+      font-size: 50px;
+  }
+  
+  #summary ul.collapse:not(.show), #summary p.collapse:not(.show) {
+      height: 47px !important;
+      overflow: hidden;
+    
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;  
+  }
+  
+  #summary ul.collapsing, p.collapsing {
+      min-height: 47px !important;
+  }
+  
+  #summary > a:after  {
+      content: '+ Lire la suite';
+  }
+  
+  #summary > a:not(.collapsed):after {
+      content: '- Fermer';
+  }
+  
 .custom-file-input ~ .custom-file-label::after {
     content: "Upload CV";
 }
@@ -26,4 +97,27 @@ div.container {
 .avatar-mini {
     max-width: 24px;
     max-height: 24px;
+}
+
+@media (min-width: 576px) {  
+    #btn-profil {
+        text-align: un;
+    }
+}
+ 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {  
+ h1 {
+     font-size: 35px;
+ }
+}
+ 
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+ 
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+    
 }

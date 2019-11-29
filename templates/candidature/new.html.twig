@@ -5,29 +5,31 @@
 
 {% block body %}
 	<div class="container">
-		<h1>Postuler pour l'offre :
-			{{offer.title}}</h1>
+		<div class="row mt-4">
+			<h1>Postuler pour l'offre :
+				<a href="{{path('offers_show', {'slug' : offer.slug} )}}">{{offer.title}}</a></h1>
 
-		<p>Vous êtes sur le point de postuler pour l'offre de
-			<strong>{{offer.author.fullName}}</strong>
-			, l'entreprise vous répondera d'ici peu !</p>
+			<p>Vous êtes sur le point de postuler pour l'offre de
+				<a href="{{path('user_show', {'slug' : offer.author.slug} )}}"><strong>{{offer.author.fullName}}</strong></a>
+				, l'entreprise vous répondera d'ici peu !</p>
 
 
-		{{form_start(form)}}
+			{{form_start(form)}}
 
-		<div class="alert alert-light">
-			<h2>Commencez par upload un CV et dite nous en un peu plus sur vos motivations (optionnel) !</h2>
-			<div class="row">
-				<div class="col">
-					{{form_row(form.cvFileName)}}
+			<div class="alert alert-light">
+				<h2>Commencez par upload un CV et dite nous en un peu plus sur vos motivations (optionnel) !</h2>
+				<div class="row">
+					<div class="col">
+						{{form_row(form.cvFileName)}}
+					</div>
+					<div class="col">
+						{{form_row(form.coverLetter)}}
+					</div>
 				</div>
-				<div class="col">
-					{{form_row(form.coverLetter)}}
-				</div>
+				<button type="submit" class="btn btn-success rounded">Envoyer votre candidature</button>
 			</div>
-			<button type="submit" class="btn btn-success">Envoyer votre candidature</button>
-		</div>
 
-		{{form_end(form)}}
+			{{form_end(form)}}
+		</div>
 	</div>
 {% endblock %}

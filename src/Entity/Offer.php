@@ -3,14 +3,19 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OfferRepository")
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(
+ * fields={"slug"},
+ * message="Cette adresse a déjà été enregistrée par quelqu'un d'autre. Modifiez là dans le champ ci-dessous."
+ *)
  */
 class Offer
 {
@@ -23,6 +28,7 @@ class Offer
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Vous devez renseigner le titre de l'offre")
      * @Assert\Length(max=255, maxMessage="Le titre ne peut pas faire plus de  255 caractères")
      */
     private $title;
@@ -34,6 +40,7 @@ class Offer
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Vous devez renseigner la description de l'offre")
      */
     private $description;
 
@@ -44,7 +51,7 @@ class Offer
     private $author;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Candidature", mappedBy="offer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Candidature", mappedBy="offer", cascade={"remove"})
      */
     private $candidatures;
 

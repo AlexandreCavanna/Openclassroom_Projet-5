@@ -1,6 +1,6 @@
 {% set url = path('offers_show', {'slug': offer.slug}) %}
 
-<div class="col-md-4">
+<div class="col-12 col-md-6 col-lg-4">
 	<div class="card bg-light mb-3">
 		<div class="card-header text-center">
 			Company
@@ -11,15 +11,34 @@
 					{{ offer.title }}
 				</a>
 			</h4>
-			<p class="card-text">
-				{{ offer.description }}
+			<p class="card-text" style=" overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
+				{{ offer.description | raw }}
 			</p>
-			{% if app.user and app.user == offer.author %}
-				<a href="{{url}}" class="btn btn-primary">Gérer offre</a>
-				<a href="{{ path('offers_edit', {'slug': offer.slug}) }}" class="btn btn-secondary">Modifier l'offre</a>
-			{% else %}
-				<a href="{{url}}" class="btn btn-primary">En savoir plus !</a>
-			{% endif %}
+			<div class="row">
+				{% if app.user and app.user == offer.author and is_granted('ROLE_EMPLOYER') %}
+					<div class="col-12 mb-4">
+						{# <div class="row text-center mb-3">
+							<div class="col">
+							</div>
+						</div> #}
+						<div class="row text-center">
+							<div class="col-12 mb-4">
+								<a href="{{url}}" class="btn btn-primary">Voir l'offre</a>	
+							</div>
+							<div class="col-6">
+								<a href="{{ path('offers_edit', {'slug': offer.slug}) }}" class="btn btn-secondary">Modifier l'offre</a>
+							</div>					
+							<div class="col-6">
+								<a href="{{ path('offers_delete', {'slug': offer.slug}) }}" class="btn btn-danger" onclick="return confirm(`Êtes vous sur de vouloir supprimer l'offre : {{offer.title}} ?`)">Supprimer l'offre</a>	
+							</div>
+						</div>
+					</div>
+				{% else %}
+					<div class="col">
+						<a href="{{url}}" class="btn btn-primary">En savoir plus !</a>
+					</div>
+				{% endif %}
+			</div>
 		</div>
 	</div>
 </div>

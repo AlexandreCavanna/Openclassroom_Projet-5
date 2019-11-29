@@ -8,74 +8,67 @@
 
 
 	<div class="container">
-		<div class="row">
-			<div class="col-9">
+		<div class="row mt-4">
+			<div class="col-7">
 				<h1>{{offer.title}}</h1>
-				<p>{{offer.description}}</p>
+				<p>{{offer.description | raw}}</p>
 				{% if app.user and is_granted('ROLE_STUDENT') %}
 					<div class="mb-4">
 						<a href="{{ path('candidatures_new', {'slug': offer.slug}) }}" class="btn btn-primary">Postuler à cette offre</a>
 					</div>
 				{% endif %}
 				{% if app.user and app.user == offer.author and is_granted('ROLE_EMPLOYER') %}
-					<div class="mb-4">
-						<a href="{{ path('offers_edit', {'slug': offer.slug}) }}" class="btn btn-secondary">Modifier l'offre</a>
-
-						<a href="{{ path('offers_delete', {'slug': offer.slug}) }}" class="btn btn-danger" onclick="return confirm(`Êtes vous sur de vouloir supprimer l'offre : {{offer.title}} ?`)">Supprimer l'offre</a>
-					</div>
 					{% if offer.candidatures is not empty %}
-
-						<table class="table table-hover table-striped">
-							<thead>
-								<tr>
-									<th scope="col">Id</th>
-									<th scope="col">Etudiant</th>
-									<th scope="col">Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								{% for candidature in offer.candidatures %}
-									<tr class="table">
-										<th scope="row">Candidature n°{{ loop.index }}</th>
-										<td>
-											<a href="{{path('user_show', {'slug' : candidature.student.slug} )}}">{{candidature.student.fullName}}</a>
-										</td>
-										<td>
-											<a href="{{ path('candidatures_show', {'id': candidature.id}) }}" class="btn btn-primary">Voir Candidature</a>
-										</td>
+						<div class="table-responsive">
+							<table class="table table-hover table-striped">
+								<thead>
+									<tr>
+										<th scope="col">Id</th>
+										<th scope="col">Etudiant</th>
+										<th scope="col">Action</th>
 									</tr>
-								{% endfor %}
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									{% for candidature in offer.candidatures %}
+										<tr class="table">
+											<th scope="row">Candidature n°{{ loop.index }}</th>
+											<td>
+												<a href="{{path('user_show', {'slug' : candidature.student.slug} )}}">{{candidature.student.fullName}}</a>
+											</td>
+											<td>
+												<a href="{{ path('candidatures_show', {'id': candidature.id}) }}" class="btn btn-primary btn-tab">Voir Candidature</a>
+											</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
 					{% else %}
 						<div class="alert alert-warning">
-							<p><strong>Cette offre n'a pas encore de candidatures.</strong></p>
+							<p>
+								<strong>Cette offre n'a pas encore de candidatures.</strong>
+							</p>
 						</div>
 					{% endif %}
 				{% endif %}
 
 			</div>
-			<div class="col">
-				{% set o = offer.author %}
-
-				<div class="row mb-3 align-items-center">
-					<div class="col-4">
+			{% if is_granted('ROLE_USER') %}
+				<div class="col-5">
+					{% set o = offer.author %}
+					<div class="mb-4 text-center">
 						<a href="{{path('user_show', {'slug' : o.slug} )}}">
 							<img src="{{o.picture}}" class="avatar avatar-medium" alt="Avatar de {{o.fullName}}">
 						</a>
-					</div>
-					<div class="col">
 						<a href="{{path('user_show', {'slug' : o.slug} )}}">
-							<h3>{{o.fullName}}</h3>
+							<h3 class="my-2">{{o.fullName}}</h3>
 						</a>
 						<span class="badge badge-primary rounded">{{o.offers | length}}
 							offres</span>
 					</div>
+					{{ o.description | raw}}
 				</div>
-
-				{{ o.description | raw}}
-
-			</div>
+			{% endif %}
 		</div>
 	</div>
 

@@ -7,50 +7,67 @@
 {% block body %}
 
 	<div class="container">
-		<div class="row mb-3 align-items-center">
-			<div class="col-3 text-center">
+		<div class="row mt-4 h-100 text-center">
+			<div class="col-6 col-lg-4">
 				<img src="{{user.picture}}" class="avatar mb-3" alt="{{user.fullName}}">
-				{% if is_granted('ROLE_EMPLOYER') %}
-				<br>
-				<span class="badge badge-primary rounded">{{user.offers | length}}
-					{% if user.offers | length == 0 %}
-						offre
-					{% else %}
-						offres
-					{% endif %}
-				</span>
-				{% endif %}
-			</div>
-			<div class="col-9">
-				<h1>{{user.fullName}}</h1>
-				{% if user is same as(app.user) %}
-					<div class="mt-3">
-						<a href="{{ path('account_profile') }}" class="btn btn-primary mr-2 mb-2">Modifier mes informations</a>
-						<a href="{{ path('account_password') }}" class="btn btn-primary mb-2">Modifier mon mot de passe</a>
+				<div class="row justify-content-center">
+					<div class="col-6">
+						{% if is_granted('ROLE_EMPLOYER') %}
+							<span class="badge badge-primary rounded">{{user.offers | length}}
+								{% if user.offers | length == 0 %}
+									offre
+								{% else %}
+									offres
+								{% endif %}
+							</span>
+						{% endif %}
 					</div>
-				{% endif %}
+				</div>
+			</div>
+			<div class="col-6 col-lg-5 align-self-center">
+				<h1>{{user.fullName}}</h1>
+				<div class="row my-4" id="btn-profil">
+					{% if user is same as(app.user) %}
+						<div class="col-12 col-md-6 mb-3 align-self-center">
+							<a href="{{ path('account_profile') }}" class="btn btn-primary rounded">Modifier mes informations</a>
+						</div>
+						<div class="col-12 col-md-6 mb-3 align-self-center">
+							<a href="{{ path('account_password') }}" class="btn btn-primary rounded">Modifier mon mot de passe</a>
+						</div>
+					{% endif %}
+				</div>
 			</div>
 		</div>
-		<div class="col">
-			<p>{{user.introduction | raw}}</p>
-			<p>{{user.description | raw}}</p>
-		</div>
-		{% if is_granted('ROLE_EMPLOYER') %}
-		<hr>
-		<h2>Les offres de {{user.fullName}}</h2>
-
-		{% if user.offers | length > 0 %}
+			<hr>
 			<div class="row">
-				{% for offer in user.offers %}
-					{% include 'offer/_offer.html.twig' %}
-				{% endfor %}
+				<div class="col-12 col-md-4">
+					<strong class="d-block mb-2">Ce que je recherche :</strong>
+					{{user.introduction | raw}}
+				</div>
+				<div class="col-12 col-md-8">
+					<strong class="d-block mb-2">Qui suis-je ? :</strong>
+					{{user.description | raw}}
+				</div>
 			</div>
-		{% else %}
-			<div class="alert alert-warning">
-				<p><strong>{{user.fullName}}</strong>n'a pas encore d'offre sur le site !</p>
-			</div>
-		{% endif %}
+		
+
+
+		{% if is_granted('ROLE_EMPLOYER') %}
+			<hr>
+			<h2 class="mb-3">Les offres de {{user.fullName}}</h2>
+
+			{% if user.offers | length > 0 %}
+				<div class="row mb-4">
+					{% for offer in user.offers %}
+						{% include 'offer/_offer.html.twig' %}
+					{% endfor %}
+				</div>
+			{% else %}
+				<div class="alert alert-warning">
+					<p>
+						<strong>{{user.fullName}}</strong>n'a pas encore d'offre sur le site !</p>
+				</div>
+			{% endif %}
 		{% endif %}
 	</div>
-	
-{% endblock %}
+	{% endblock %}

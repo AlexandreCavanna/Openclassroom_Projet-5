@@ -18,14 +18,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class OfferController extends AbstractController
 {
     /**
-     * @Route("/offers", name="offers_index")
+     * @Route("/offers/{page<\d+>?1}", name="offers_index")
      */
-    public function index(OfferRepository $repo)
+    public function index(OfferRepository $repo, $page)
     {
-        $offers = $repo->findAll();
+        $limit = 9;
+
+        $start = $page * $limit - $limit;
+
+        $total = count($repo->findAll());
+
+        $pages = ceil($total / $limit);
 
         return $this->render('offer/index.html.twig', [
-            'offers' => $offers,
+            'offers' => $repo->findBy([], [], $limit, $start),
+            'pages' => $pages,
+            'page' => $page
         ]);
     }
 
@@ -36,15 +44,15 @@ class OfferController extends AbstractController
      * @IsGranted("ROLE_EMPLOYER")
      * @return Response
      */
-    public function new(Request $request, ObjectManager $manager)
+    public function new(Request $request, ObjectManager $manager, OfferRepository $repo)
     {
         $offer = new Offer();
 
         $form = $this->createForm(OfferType::class, $offer);
 
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        
+        if ($form->isSubmitted() && $form->isValid() && $availableSlug = 0 === $repo->count(['slug' => 'nonexistent'])) {
 
             $offer->setAuthor($this->getUser());
 
@@ -70,7 +78,7 @@ class OfferController extends AbstractController
      * Permet d'afficher le formulaire d'édition d'une offre
      * 
      * @Route("/offers/{slug}/edit", name="offers_edit")
-     * @Security("is_granted('ROLE_USER') and user == offer.getAuthor()",
+     * @Security("is_granted('ROLE_EMPLOYER') and user == offer.getAuthor()",
      *  message="Cette offre ne vous appartient pas, vous ne pouvez pas la modifier")
      * 
      * @return Responce
@@ -134,6 +142,6 @@ class OfferController extends AbstractController
             "L'offre <strong>{$offer->getTitle()}</strong> a bien été supprimée !"
         );
 
-        return $this->redirectToRoute("offers_index");
+        return $this->redirectToRoute("account_index");
     }
 }

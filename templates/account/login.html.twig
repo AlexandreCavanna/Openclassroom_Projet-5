@@ -4,13 +4,11 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div class="container h-50">
 
-		<div class="row">
-			<div class="col-md-3">&nbsp;</div>
-			<div class="col-md-6">
-				<div class="bg-light py-3 px-3">
-					<h1>Connectez-vous !</h1>
+		<div class="row justify-content-center align-items-center h-100">
+			<div class="col-md-6 bg-light py-3 px-3 border border-dark">
+					<h1 class="text-center">Connectez-vous !</h1>
 
 					{% if hasError %}
 						<div class="alert alert-danger">Une erreur est survenue, le nom d'utilisateur ou 
@@ -33,11 +31,11 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
 								</div>  
-								<input type="password" name="_password" id="email" class="form-control" placeholder="Mot de passe..." required>
+								<input type="password" name="_password" id="password" class="form-control" placeholder="Mot de passe..." required>
                                 </div>
 							</div>
 							<div class="form-group text-center">
-								<button type="submit" class="btn btn-success">Connexion !</button>
+								<button type="submit" class="btn btn-success btn-lg rounded">Connexion !</button>
 							</div>
 							<div class="text-center">
 								<a href="{{path('account_register')}}">Pas encore inscrit ?</a>
@@ -45,6 +43,5 @@
 						</form>
 					</div>
 				</div>
-			</div>
 		</div>
 	{% endblock %}

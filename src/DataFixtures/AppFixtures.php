@@ -75,8 +75,8 @@ class AppFixtures extends Fixture
             $user->setFirstname($faker->firstName($genre))
                 ->setLastname($faker->lastName)
                 ->setEmail($faker->email)
-                ->setIntroduction($faker->sentence())
-                ->setDescription('<p>' . join('<p></p>', $faker->paragraphs(3)) . '<p>')
+                ->setIntroduction('<p>' . join('</p><p>', $faker->paragraphs(1)) . '</p>')
+                ->setDescription('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>')
                 ->setHash($hash)
                 ->setPicture($picture)
                 ->addUserRole($role);

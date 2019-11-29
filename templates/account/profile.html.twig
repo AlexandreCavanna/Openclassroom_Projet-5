@@ -5,12 +5,68 @@
 {% block body %}
 
 <div class="container">
-<h1>Modification du profile</h1>
 
-    {{form_start(form)}}
-    {{form_widget(form)}}
-    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
-    {{form_end(form)}}
-</div>
+		{{ form_start(form) }}
+		<div class="bg-light border border-dark p-3 my-5">
+			<h1>Mettre à jour son profil</h1>
+			{{ form_label(form.firstname)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-user"></i>
+					</span>
+				</div>
+				{{ form_widget(form.firstname)}}
+			</div>
+			{{ form_label(form.lastname)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-user"></i>
+					</span>
+				</div>
+				{{ form_widget(form.lastname)}}
+			</div>
+			{{ form_label(form.email)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-envelope"></i>
+					</span>
+				</div>
+				{{ form_widget(form.email)}}
+			</div>
+			{{ form_label(form.picture)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-picture-o"></i>
+					</span>
+				</div>
+				{{ form_widget(form.picture)}}
+			</div>
+			<div class="row mb-4">
+				<div class="col-12 col-md-6 mb-4">
+					{{ form_label(form.introduction)}}
+
+					{{ form_widget(form.introduction)}}
+
+				</div>
+				<div class="col-12 col-md-6">
+					{{ form_label(form.description)}}
+
+					{{ form_widget(form.description)}}
+
+				</div>
+			</div>
+			<div class="row text-center mb-4">
+				<div class="col">
+					{{ form_label(form.updateProfil)}}
+					{{ form_widget(form.updateProfil)}}
+				</div>
+			</div>
+		</div>
+		{{ form_end(form) }}
+	</div>
 
 {% endblock %}

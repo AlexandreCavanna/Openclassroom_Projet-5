@@ -23,61 +23,61 @@
 
 	<div class="container">
 		<div class="jumbotron my-5">
-			<h1 class="col-md-12 display-3">Bienvenue sur StudyJob !</h1>
+			<h1 class="col-md-12 display-4">Bienvenue sur StudyJob !</h1>
 			<p class="lead">Ici nous mettons en relation vos
 				<strong>Etudiants</strong>
 				et vos
 				<strong>Futurs Apprentis</strong>.</p>
 			<hr class="my-4">
 			<blockquote class="blockquote">
-				<p class="mb-0">Il n'est pas de talent sans un peu d'orgueil, et sans l'orgueil il n'y aurait pas de talent.</p>
-				<div class="blockquote-footer mb-4">Antoine de Rivarol dans
-					<cite title="Source Title">Les pensées inédites de Rivarol (1836)</cite>
+				<p class="mb-0">StudyJob Ensemble construisons un avenir meilleur !</p>
+				<div class="blockquote-footer mb-4">StudyJob dans
+					<cite title="Source Title">Les pensées inédites de StudyJob</cite>
 				</div>
 			</blockquote>
-			<a class="btn btn-primary btn-lg" href="#" role="button">En savoir plus !</a>
+			<a class="btn btn-dark btn-lg" href="{{ path('account_register') }}" role="button">S'inscrire maintenant !</a>
 
 		</div>
-		<div class="my-5 mx-auto">
-			<div class="row">
-				<div class="col-12 col-sm-12 offset-sm-2 col-md-6 offset-md-0 col-lg-3 offset-lg-0">
-					<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-						<img class="img-fluid" style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
-						<div class="card-body">
-							<h4 class="card-title">Secondary card title</h4>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			<div class="row mb-4 justify-content-center">
+				<div class="col-12 col-md-4">
+					<div class="card bg-light mb-3">
+						<img class="img-fluid" src="{{ asset('images/student.png') }}" alt="Card image">
+						<div class="card-body" id="summary">
+							<h4 class="card-title">Avantages Etudiant</h4>
+							<ul class="card-text px-0 collapse" id="collapseStudent">
+								<li>1) Bénéficier d’une offre de formation adaptée à son niveau et à ses besoins.</li><br>
+								<li>2) Acquérir une qualification reconnue en situation de travail en étant rémunéré et quel que soit le niveau de formation initial.</li><br>
+								<li>3) Être accompagné par un tuteur ce qui facilite l’insertion dans l’entreprise.</li><br>
+							</ul>
+							<a class="btn btn-info collapsed rounded" data-toggle="collapse" href="#collapseStudent" aria-expanded="false" aria-controls="collapseSummary"></a>
 						</div>
 					</div>
 				</div>
-				<div class=" col-12 col-sm-12 offset-sm-2 col-md-6 offset-md-0 col-lg-3 offset-lg-0">
-					<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
-						<img class="img-fluid" style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
-						<div class="card-body">
-							<h4 class="card-title">Secondary card title</h4>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				<div class="col-12 col-md-4">
+					<div class="card text-white border border-white bg-dark mb-3">
+						<img class="img-fluid bg-light" src="{{ asset('images/handshake.png') }}" alt="Card image">
+						<div class="card-body" id="summary">
+							<h4 class="card-title">Qu'est ce que l'alternance ?</h4>
+							<p class="card-text collapse" id="collapseAlternance">Le principe d'une formation en alternance, est d'alterner une formation générale et théorique dans un centre de formation avec une formation pratique en entreprise, dans le but de se préparer à un examen mais également apprendre les pratiques d’un métier.</p>
+							<a class="btn btn-info collapsed rounded" data-toggle="collapse" href="#collapseAlternance" aria-expanded="false" aria-controls="collapseSummary"></a>
 						</div>
 					</div>
 				</div>
-				<div class="col-12 col-sm-12 offset-sm-2 col-md-6 offset-md-0 col-lg-3 offset-lg-0">
-					<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-						<img class="img-fluid" style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
-						<div class="card-body">
-							<h4 class="card-title">Secondary card title</h4>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-sm-12 offset-sm-2 col-md-6 offset-md-0 col-lg-3 offset-lg-0">
-					<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
-						<img class="img-fluid" style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image">
-						<div class="card-body">
-							<h4 class="card-title">Secondary card title</h4>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				<div class="col-12 col-md-4">
+					<div class="card bg-light mb-3">
+						<img class="img-fluid" src="{{ asset('images/employer.png') }}" alt="Card image">
+						<div class="card-body" id="summary">
+							<h4 class="card-title">Avantages Employeur</h4>
+							<ul class="card-text px-0 collapse" id="collapseEmployeur">
+								<li>1) Recruter un salarié motivé en bénéficiant de conditions avantageuses.</li><br>
+								<li>2) Établir une convention de formation adaptée aux besoins de l’entreprise (évaluation préformative, personnalisation du parcours de formation et choix de l’organisme) et du salarié.</li><br>
+								<li>3) Assurer une transmission des savoir-faire et un accompagnement grâce aux tuteurs.</li><br>
+							</ul>
+							<a class="btn btn-info collapsed rounded" data-toggle="collapse" href="#collapseEmployeur" aria-expanded="false" aria-controls="collapseSummary"></a>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 	</div>
 
 {% endblock %}

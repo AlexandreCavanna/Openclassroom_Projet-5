@@ -3,8 +3,6 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ApplicationType extends AbstractType
 {
@@ -16,12 +14,13 @@ class ApplicationType extends AbstractType
      * @param array $options
      * @return array
      */
-    protected function getConfiguration($label, $placeholder, $class, $options = []) {
+    protected function getConfiguration($label, $placeholder, $class, $style, $options = []) {
         return array_merge_recursive([
             'label' => $label,
             'attr' => [
                 'placeholder' => $placeholder,
-                'class' => $class
+                'class' => $class,
+                'style' => $style
             ]
         ], $options);
     }

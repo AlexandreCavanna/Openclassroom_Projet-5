@@ -5,12 +5,37 @@
 {% block body %}
 
 <div class="container">
-    <h1>Modifier l'offre : {{offer.title}}</h1>
-    {{form_start(form)}}
-    
-    {{form_widget(form)}}
-    <button type="submit" class="btn btn-success">Publier une offre</button>
-    {{form_end(form)}}
-</div>
+		{{form_start(form)}}
+		<div class="bg-light border border-dark p-3 my-5">
+			<h1>Modifier l'offre</h1>
+			{{ form_label(form.title)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-align-right"></i>
+					</span>
+				</div>
+				{{ form_widget(form.title)}}
+			</div>
+			{{ form_label(form.slug)}}
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">
+						<i class="fa fa-link"></i>
+					</span>
+				</div>
+				{{ form_widget(form.slug)}}
+			</div>
+			<div class="mb-4">
+				{{ form_label(form.description)}}
+				{{ form_widget(form.description)}}
+			</div>
+			<div class="col text-center">
+				{{ form_label(form.addOffer)}}
+				{{ form_widget(form.addOffer)}}
+			</div>
+		</div>
+		{{form_end(form)}}
+	</div>
 
 {% endblock %}

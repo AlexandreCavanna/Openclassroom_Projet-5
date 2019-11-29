@@ -1,16 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Création d'une offre{% endblock %}
+{% block title %}Création d'une offre
+{% endblock %}
 
 {% block body %}
 
-<div class="container">
-    <h1>Créer une nouvelle offre</h1>
-    {{form_start(form)}}
-    
-    {{form_widget(form)}}
-    <button type="submit" class="btn btn-success">Publier une offre</button>
-    {{form_end(form)}}
-</div>
-
+	<div class="container pt-5">
+		{{form_start(form)}}
+		<div class="row justify-content-center align-items-center h-100">
+            <div class="col-md-9">
+				<div class="bg-light border border-dark mb-5 p-3">
+					<h1>Créer une nouvelle offre</h1>
+					{{ form_label(form.title)}}
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">
+								<i class="fa fa-align-right"></i>
+							</span>
+						</div>
+						{{ form_widget(form.title)}}
+					</div>
+					{{ form_label(form.slug)}}
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="basic-addon1">
+								<i class="fa fa-link"></i>
+							</span>
+						</div>
+						{{ form_widget(form.slug)}}
+					</div>
+					<div class="mb-4">
+						{{ form_label(form.description)}}
+						{{ form_widget(form.description)}}
+					</div>
+					<div class="col text-center">
+						{{ form_label(form.addOffer)}}
+						{{ form_widget(form.addOffer)}}
+					</div>
+				</div>
+			</div>
+		</div>
+		{{form_end(form)}}
+	</div>
 {% endblock %}
+
+{% block javascripts %}
+    <script>
+  $('input#offer_title').keyup(function() {
+     var val = $(this).val();
+  val = val.split(' ').join('-').toLowerCase();
+  val = val.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    $('input#offer_slug').val(val);
+});
+  </script>
+	{% endblock %}

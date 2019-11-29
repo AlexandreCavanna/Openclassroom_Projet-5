@@ -46,12 +46,16 @@ class User implements UserInterface
     private $email;
 
     /**
+     *@Assert\EqualTo(propertyPath="email", message="Vous n'avez pas correctement confirmé votre email")
+     */
+    public $emailConfirm;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $hash;
 
     /**
-     * Undocumented variable
      *@Assert\EqualTo(propertyPath="hash", message="Vous n'avez pas correctement confirmé votre mot de passe")
      */
     public $passwordConfirm;
@@ -64,12 +68,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Vous devez renseigner votre introduction")
      * @Assert\Length(min=10, minMessage="Votre introduction doit faire au moins 10 caractères", max=255, maxMessage="Votre introduction doit faire moins de 255 caractères")
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Vous devez renseigner votre description")
      * @Assert\Length(min=100, minMessage="Votre description doit faire au moins 100 caractères")
      */
     private $description;
