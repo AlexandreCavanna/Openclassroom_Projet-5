@@ -5,9 +5,8 @@ namespace App\Controller;
 use App\Entity\Offer;
 use App\Entity\Candidature;
 use App\Form\CandidatureType;
-use App\Repository\CandidatureRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +18,7 @@ class CandidatureController extends AbstractController
      * @Route("/offers/{slug}/apply-job", name="candidatures_new")
      * @IsGranted("ROLE_STUDENT")
      */
-    public function applyJob(Offer $offer, Request $request, ObjectManager $manager)
+    public function applyJob(Offer $offer, Request $request, EntityManagerInterface $manager)
     {
         $candidature = new Candidature();
 

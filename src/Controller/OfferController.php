@@ -7,7 +7,7 @@ use App\Form\OfferType;
 use App\Repository\OfferRepository;
 use App\Repository\CandidatureRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -44,7 +44,7 @@ class OfferController extends AbstractController
      * @IsGranted("ROLE_EMPLOYER")
      * @return Response
      */
-    public function new(Request $request, ObjectManager $manager, OfferRepository $repo)
+    public function new(Request $request, EntityManagerInterface $manager, OfferRepository $repo)
     {
         $offer = new Offer();
 
@@ -83,7 +83,7 @@ class OfferController extends AbstractController
      * 
      * @return Responce
      */
-    public function edit(Offer $offer, Request $request, ObjectManager $manager)
+    public function edit(Offer $offer, Request $request, EntityManagerInterface $manager)
     {
         $form = $this->createForm(OfferType::class, $offer);
 
@@ -129,10 +129,10 @@ class OfferController extends AbstractController
      * @Security("is_granted('ROLE_USER') and user == offer.getAuthor()", message="Vous n'avez pas le droit d'accèder à cette ressource")
      * 
      * @param Offer $offer
-     * @param ObjectManager $manager
+     * @param EntityManagerInterface $manager
      * @return Response
      */
-    public function delete(Offer $offer, ObjectManager $manager)
+    public function delete(Offer $offer, EntityManagerInterface $manager)
     {
         $manager->remove($offer);
         $manager->flush();
