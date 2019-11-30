@@ -9,8 +9,8 @@
 		</title>
 		<script src="https://use.fontawesome.com/e51ee65cc1.js"></script>
 		<link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}" />
-		<link rel="stylesheet" href="/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/css/style.css"> {% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/style.css') }}"> {% block stylesheets %}{% endblock %}
 		</head>
 		<body>
 			{% include "/partials/header.html.twig" %}
@@ -19,10 +19,10 @@
 
 			{% include "/partials/footer.html.twig" %}
 
-			<script src="/js/jquery.min.js"></script>
-			<script src="/js/popper.min.js"></script>
-			<script src="/js/bootstrap.min.js"></script>
-			<script src="/js/script.js"></script>
+			<script src="{{ asset('js/jquery.min.js') }}"></script>
+			<script src="{{ asset('js/popper.min.js') }}"></script>
+			<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+			<script src="{{ asset('js/script.js') }}"></script>
 			{% block javascripts %}
 			{% endblock %}
 		</body>

@@ -7,26 +7,12 @@
     <h1 class="my-4">Voici les offres de nos partenaires !</h1>
 
     <div class="row">
-        {% for offer in offers %}
+        {% for offer in pagination.data %}
             {% set url = path('offers_show', {'slug': offer.slug}) %}
             {% include 'offer/_offer.html.twig '%}
         {% endfor %}
     </div>
-    <div class="d-flex justify-content-center">
-        <ul class="pagination">
-            <li class="page-item {% if page == 1 %} disabled {% endif %}">
-            <a class="page-link" href="{{ path('offers_index', {'page' : page - 1 }) }}">&laquo;</a>
-            </li>
-            {% for i in 1..pages %}
-            <li class="page-item {% if page == i %} active {% endif %}">
-            <a class="page-link" href="{{ path('offers_index', {'page' : i }) }}">{{i}}</a>
-            </li>
-            {% endfor %}
-            <li class="page-item {% if page == pages %} disabled {% endif %}">
-            <a class="page-link" href="{{ path('offers_index', {'page' : page + 1 }) }}">&raquo;</a>
-            </li>
-        </ul>
-    </div>
+    {{ pagination.display() }}
 </div>
 {% endblock %}
                     

@@ -4,10 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Offer;
 use App\Form\OfferType;
+use App\Service\Pagination;
 use App\Repository\OfferRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CandidatureRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -20,20 +21,13 @@ class OfferController extends AbstractController
     /**
      * @Route("/offers/{page<\d+>?1}", name="offers_index")
      */
-    public function index(OfferRepository $repo, $page)
+    public function index($page, Pagination $pagination)
     {
-        $limit = 9;
-
-        $start = $page * $limit - $limit;
-
-        $total = count($repo->findAll());
-
-        $pages = ceil($total / $limit);
+        $pagination->setEntityClass(Offer::class)
+                   ->setPage($page);
 
         return $this->render('offer/index.html.twig', [
-            'offers' => $repo->findBy([], [], $limit, $start),
-            'pages' => $pages,
-            'page' => $page
+            'pagination' => $pagination
         ]);
     }
 

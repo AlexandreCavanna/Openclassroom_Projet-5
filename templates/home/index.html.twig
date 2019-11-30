@@ -35,7 +35,11 @@
 					<cite title="Source Title">Les pensées inédites de StudyJob</cite>
 				</div>
 			</blockquote>
+			{% if app.user %}
+			<a class="btn btn-dark btn-lg" href="{{ path('offers_index') }}" role="button">Voir les offres !</a>
+			{% else %}
 			<a class="btn btn-dark btn-lg" href="{{ path('account_register') }}" role="button">S'inscrire maintenant !</a>
+			{% endif %}
 
 		</div>
 			<div class="row mb-4 justify-content-center">
