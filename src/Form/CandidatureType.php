@@ -15,7 +15,7 @@ class CandidatureType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('cvFileName', FileType::class, $this->getConfiguration('Upload un Cv (PDF)', '.   .   .', null, null, [
+            ->add('cvFileName', FileType::class, $this->getConfiguration(null, null, null, null, [
 
                 'mapped' => false,
 

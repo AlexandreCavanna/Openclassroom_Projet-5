@@ -16,24 +16,28 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col">
 				{{form_start(form)}}
-
-				<div class="alert alert-light">
+				<div class="col-12 alert alert-light">
 					<h2>Commencez par upload un CV et dite nous en un peu plus sur vos motivations (optionnel) !</h2>
-					<div class="row">
-						<div class="col">
-							{{form_row(form.cvFileName)}}
-						</div>
-						<div class="col">
-							{{form_row(form.coverLetter)}}
+			    </div>
+		</div>
+					<div class="row mb-2 justify-content-center">
+							<div class="col-12 col-sm-10 col-lg-8">
+								{{form_row(form.coverLetter)}}
+							</div>
+					</div>
+					<div class="row mb-4 justify-content-center">
+					{# <div class="row mb-4 justify-content-center"> #}
+							<div class="col-6 col-sm-3 col-md-3 col-lg-2 mb-4 align-self-center">
+								{{form_widget(form.cvFileName)}}
+							</div>
+					{# </div> #}
+						<div class="col-9 col-sm-5 col-md-4 text-center">
+							<button type="submit" class="btn btn-success rounded">Envoyer votre candidature</button>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-success rounded">Envoyer votre candidature</button>
 				</div>
 
 				{{form_end(form)}}
-			</div>
-		</div>
 	</div>
 {% endblock %}

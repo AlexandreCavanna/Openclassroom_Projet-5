@@ -7,7 +7,11 @@
   }
   
   h1 {
-      font-size: 28px;
+      font-size: 24px;
+  }
+
+  h2 {
+      font-size: 20px ;
   }
 
   .dropdown-menu--animate.collapsing {
@@ -79,8 +83,18 @@
       content: '- Fermer';
   }
   
-.custom-file-input ~ .custom-file-label::after {
-    content: "Upload CV";
+.custom-file {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+input[type="file"] {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0;
+    right: 0;
+    top: 0;
 }
 
 .avatar {
@@ -109,6 +123,9 @@
 @media (min-width: 768px) {  
  h1 {
      font-size: 35px;
+ }
+ h2 {
+     font-size: 28px;
  }
 }
  
