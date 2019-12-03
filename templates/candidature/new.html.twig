@@ -6,30 +6,34 @@
 {% block body %}
 	<div class="container">
 		<div class="row mt-4">
-			<h1>Postuler pour l'offre :
-				<a href="{{path('offers_show', {'slug' : offer.slug} )}}">{{offer.title}}</a></h1>
+			<div class="col">
+				<h1>Postuler pour l'offre :
+					<a href="{{path('offers_show', {'slug' : offer.slug} )}}">{{offer.title}}</a></h1>
 
-			<p>Vous êtes sur le point de postuler pour l'offre de
-				<a href="{{path('user_show', {'slug' : offer.author.slug} )}}"><strong>{{offer.author.fullName}}</strong></a>
-				, l'entreprise vous répondera d'ici peu !</p>
-
-
-			{{form_start(form)}}
-
-			<div class="alert alert-light">
-				<h2>Commencez par upload un CV et dite nous en un peu plus sur vos motivations (optionnel) !</h2>
-				<div class="row">
-					<div class="col">
-						{{form_row(form.cvFileName)}}
-					</div>
-					<div class="col">
-						{{form_row(form.coverLetter)}}
-					</div>
-				</div>
-				<button type="submit" class="btn btn-success rounded">Envoyer votre candidature</button>
+				<p>Vous êtes sur le point de postuler pour l'offre de
+					<a href="{{path('user_show', {'slug' : offer.author.slug} )}}"><strong>{{offer.author.fullName}}</strong></a>
+					, l'entreprise vous répondera d'ici peu !</p>
 			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				{{form_start(form)}}
 
-			{{form_end(form)}}
+				<div class="alert alert-light">
+					<h2>Commencez par upload un CV et dite nous en un peu plus sur vos motivations (optionnel) !</h2>
+					<div class="row">
+						<div class="col">
+							{{form_row(form.cvFileName)}}
+						</div>
+						<div class="col">
+							{{form_row(form.coverLetter)}}
+						</div>
+					</div>
+					<button type="submit" class="btn btn-success rounded">Envoyer votre candidature</button>
+				</div>
+
+				{{form_end(form)}}
+			</div>
 		</div>
 	</div>
 {% endblock %}

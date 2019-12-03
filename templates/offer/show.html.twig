@@ -9,7 +9,7 @@
 
 	<div class="container">
 		<div class="row mt-4">
-			<div class="col-7">
+			<div {% if app.user %} class="col-7" {% else %} class ="col-12" {% endif %}>
 				<h1>{{offer.title}}</h1>
 				<p>{{offer.description | raw}}</p>
 				{% if app.user and is_granted('ROLE_STUDENT') %}

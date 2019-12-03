@@ -3,7 +3,7 @@
 <div class="col-12 col-md-6 col-lg-4">
 	<div class="card bg-light mb-3">
 		<div class="card-header text-center">
-			Company
+			Offre postée par <a href="{{path('user_show', {"slug" : offer.author.slug})}}">{{ offer.author.fullName }}</a>
 		</div>
 		<div class="card-body">
 			<h4 class="card-title">

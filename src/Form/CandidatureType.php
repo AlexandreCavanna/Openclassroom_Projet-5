@@ -28,7 +28,7 @@ class CandidatureType extends ApplicationType
                             'application/pdf',
                             'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => 'Votre fichier n\'est pas un pdf.',
                     ])
                 ],
             ]))
