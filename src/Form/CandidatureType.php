@@ -4,11 +4,11 @@ namespace App\Form;
 
 use App\Entity\Candidature;
 use App\Form\ApplicationType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class CandidatureType extends ApplicationType
 {
@@ -32,7 +32,15 @@ class CandidatureType extends ApplicationType
                     ])
                 ],
             ]))
-            ->add('coverLetter', TextareaType::class, $this->getConfiguration('Lettre de motivation', 'Tapez votre lettre de motivation', null, null));
+            ->add('coverLetter', CKEditorType::class, array(
+                'label' => 'Lettre de motivation :',
+                'config' => array(
+                    'placeholder' => 'Tapez votre lettre de motivation',
+                    'basicEntities' => false,
+                    'autoParagraph' => false,
+                    'ignoreEmptyParagraph' => false
+                )
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
