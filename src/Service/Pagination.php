@@ -20,7 +20,7 @@ class Pagination {
      *
      * @var integer
      */
-    private $limit = 10;
+    private $limit = 9;
     /**
      * La page sur laquelle on se trouve actuellement
      *
