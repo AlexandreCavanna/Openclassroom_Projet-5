@@ -2,6 +2,7 @@
 
 Développement d'une platforme de mise en relation entre des étudiants et des employeurs dans le but de faciliter les démarches de l'alternance.
 
+ATTENTION => S'assurer au préalable que le projet contienne le fichier composer.lock si il n'est pas présent copier le fichier qui est présent dans ce repository à la racine du projet archivé.
 
 1) Installer composer :
 
